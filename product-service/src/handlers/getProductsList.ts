@@ -14,9 +14,10 @@ export const getProductsList: APIGatewayProxyHandler = async () => {
       body: JSON.stringify(productsList)
     }
   } catch (e) {
+    console.error(e)
     return {
       statusCode: 500,
-      body: `There is an unexpected error ${ JSON.stringify(e) }`
+      body: `There is an unexpected error ${ JSON.stringify(e.message) }`
     }
   }
 }

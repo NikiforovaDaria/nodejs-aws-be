@@ -6,7 +6,7 @@ export const getProductsById: APIGatewayProxyHandler = async event => {
   try {
     const { productId } = event.pathParameters;
 
-    const productById: Product = productsList.find(product => product.id === productId);
+    const productById = productsList.find(product => product.id === productId);
 
     return productById 
         ? {
@@ -23,9 +23,10 @@ export const getProductsById: APIGatewayProxyHandler = async event => {
           };
 
   } catch (e) {
+    console.error(e)
     return {
       statusCode: 500,
-      body: `There is an unexpected error ${ JSON.stringify(e) }`
+      body: `There is an unexpected error ${ JSON.stringify(e.message) }`
     }
   }
 }
