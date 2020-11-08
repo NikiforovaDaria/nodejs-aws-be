@@ -4,6 +4,7 @@ import { productsList } from '../mockProductsList'
 
 export const getProductsList: APIGatewayProxyHandler = async () => {
 
+  
   try {
     return {
       statusCode: 200,
