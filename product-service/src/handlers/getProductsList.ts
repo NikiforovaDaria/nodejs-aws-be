@@ -1,11 +1,20 @@
 import {APIGatewayProxyHandler} from 'aws-lambda';
+import { Client } from 'pg';
+import { dbConfig } from '../db/dbConfig';
 
-import { productsList } from '../mockProductsList'
+import getProductsListQuery from '../db/dbQuery/getProductsList';
+
+
 
 export const getProductsList: APIGatewayProxyHandler = async () => {
 
-  
+  const client = new Client(dbConfig);
+  await client.connect();
+
   try {
+
+    const { rows: productsList } = await client.query(getProductsListQuery)
+
     return {
       statusCode: 200,
       headers: { 
@@ -20,5 +29,7 @@ export const getProductsList: APIGatewayProxyHandler = async () => {
       statusCode: 500,
       body: `There is an unexpected error ${ JSON.stringify(e.message) }`
     }
+  } finally {
+    await client.end();
   }
 }
