@@ -1,0 +1,1 @@
+export default 'INSERT INTO product(description, title, price) VALUES($1, $2, $3) RETURNING id'
