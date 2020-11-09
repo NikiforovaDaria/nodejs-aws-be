@@ -1,12 +1,20 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
+import { dbConfig } from '../db/dbConfig';
+import { Client } from 'pg';
 
-import { productsList } from '../mockProductsList';
+import getProductById from '../db/dbQuery/getProductById';
 
 export const getProductsById: APIGatewayProxyHandler = async event => {
-  try {
-    const { productId } = event.pathParameters;
+ 
+  const { productId } = event.pathParameters;
 
-    const productById = productsList.find(product => product.id === productId);
+  const client = new Client(dbConfig);
+  await client.connect();
+
+  try {
+
+    const getProductByIdRes = await client.query(getProductById, [productId]);
+    const productById = getProductByIdRes.rows[0];
 
     return productById 
         ? {
@@ -28,5 +36,7 @@ export const getProductsById: APIGatewayProxyHandler = async event => {
       statusCode: 500,
       body: `There is an unexpected error ${ JSON.stringify(e.message) }`
     }
+  } finally {
+    await client.end();
   }
 }
