@@ -2,7 +2,7 @@
   "name": "product-service",
   "version": "1.0.0",
   "description": "Serverless webpack example using Typescript",
-  "main": "handler.js",
+  "main": "handler.ts",
   "scripts": {
     "deploy": "sls deploy",
     "deploy:getProductsById": "sls deploy -f getProductsById",

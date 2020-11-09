@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-CREATE TABLE products (
+CREATE TABLE product (
 	id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
 	title text NOT NULL,
 	description text,
@@ -14,7 +14,7 @@ CREATE TABLE stock (
 	FOREIGN KEY ("product_id") REFERENCES "product" ("id") ON DELETE CASCADE
 );
 
-INSERT INTO products (title, description, price) VALUES
+INSERT INTO product (title, description, price) VALUES
     ('Cat', 'so sweet', 25),
     ('Dog', 'so funny', 45),
     ('Mouse', 'so nice', 20),
