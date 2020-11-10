@@ -2,13 +2,15 @@
   "name": "product-service",
   "version": "1.0.0",
   "description": "Serverless webpack example using Typescript",
-  "main": "handler.js",
+  "main": "handler.ts",
   "scripts": {
     "deploy": "sls deploy",
     "deploy:getProductsById": "sls deploy -f getProductsById",
-    "deploy:getProductsList" : "sls deploy -f getProductsList"
+    "deploy:getProductsList": "sls deploy -f getProductsList"
   },
   "dependencies": {
+    "@types/pg": "^7.14.6",
+    "pg": "^8.4.2",
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
