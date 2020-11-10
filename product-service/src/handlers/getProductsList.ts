@@ -6,7 +6,9 @@ import getProductsListQuery from '../db/dbQuery/getProductsList';
 
 
 
-export const getProductsList: APIGatewayProxyHandler = async () => {
+export const getProductsList: APIGatewayProxyHandler = async (event) => {
+
+  console.log('getProductsList event: ' + JSON.stringify(event));
 
   const client = new Client(dbConfig);
   await client.connect();

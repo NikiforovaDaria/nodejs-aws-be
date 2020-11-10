@@ -9,6 +9,8 @@ import insertStockQuery from '../db/dbQuery/insertStock';
 
 export const createProduct: APIGatewayProxyHandler = async (event) => {
 
+  console.log('createProduct event: ' + JSON.stringify(event));
+
     const productData = JSON.parse(event.body);
     const {description, title, price, count} = productData;
 

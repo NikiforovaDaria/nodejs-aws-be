@@ -5,6 +5,8 @@ import { Client } from 'pg';
 import getProductById from '../db/dbQuery/getProductById';
 
 export const getProductsById: APIGatewayProxyHandler = async event => {
+
+  console.log('getProductsById event: ' + JSON.stringify(event));
  
   const { productId } = event.pathParameters;
 
